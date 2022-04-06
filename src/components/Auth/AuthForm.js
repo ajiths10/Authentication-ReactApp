@@ -1,4 +1,5 @@
 import { useState, useRef , useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import TokenContext from "../Context/Context-Token";
 import classes from "./AuthForm.module.css";
@@ -7,6 +8,7 @@ const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const tokenValue = useContext(TokenContext);
+  const history = useHistory();
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
@@ -43,6 +45,7 @@ const AuthForm = () => {
           res.json().then((data) => {
             console.log(data.idToken);
             tokenValue.tokenHandler(data.idToken);
+            history.replace('/'); //redirecting the page when user sucessfully logged in.
             //
           });
         } else {

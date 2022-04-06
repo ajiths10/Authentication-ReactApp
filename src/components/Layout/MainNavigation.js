@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import TokenContext from '../Context/Context-Token';
 import classes from './MainNavigation.module.css';
@@ -8,10 +8,12 @@ const MainNavigation = () => {
 
   const tokenCTX = useContext(TokenContext);
   const checkCTX  =tokenCTX.tokenValid;
+  const history = useHistory();
 
   const LogoutBtnHandler = (event) => {
     event.preventDefault();
     tokenCTX.tokenHandler('');
+    history.replace('/auth');
   };
 
   return (

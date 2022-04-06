@@ -7,9 +7,9 @@ const [tokenisValid, setTokenValid] = useState(false);
 
 const setTokenHandler=(data)=>{
     console.log(data);
-    UpdateToken(data);
-        
+    UpdateToken(data);       
 };
+
 const checker = ()=>{
     if(TokenState.trim() !==''){
         setTokenValid(true);
@@ -17,7 +17,6 @@ const checker = ()=>{
         setTokenValid(false);
     }
 }
-
 useEffect(checker,[TokenState])
 
     const contextHandler= {
