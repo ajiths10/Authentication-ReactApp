@@ -43,8 +43,9 @@ const AuthForm = () => {
           emailInputRef.current.value = "";
           passwordInputRef.current.value = "";
           res.json().then((data) => {
-            console.log(data.idToken);
+            
             tokenValue.tokenHandler(data.idToken);
+            localStorage.setItem('JWTTOKEN' , data.idToken);
             history.replace('/'); //redirecting the page when user sucessfully logged in.
             //
           });
@@ -52,7 +53,7 @@ const AuthForm = () => {
           res.json().then((data) => {
             //show an error model
             setLoading(false);
-            console.log(data.error.message);
+            
             alert(data.error.message);
           });
         }

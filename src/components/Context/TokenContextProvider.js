@@ -6,7 +6,7 @@ const [TokenState , UpdateToken] = useState('');
 const [tokenisValid, setTokenValid] = useState(false);
 
 const setTokenHandler=(data)=>{
-    console.log(data);
+    
     UpdateToken(data);       
 };
 

@@ -14,7 +14,6 @@ const ProfileForm = () => {
   const changePasswordHandler = async(event)=>{
     event.preventDefault();
     const refPasswordValue = resetPassWordRef.current.value;
-    console.log(CTX.tokenValid);
 
     if(CTX.tokenValid){
       setBtnValue('Sending...');

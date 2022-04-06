@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Switch, Route ,Redirect } from "react-router-dom";
 
 import TokenContext from './components/Context/Context-Token';
@@ -14,6 +14,16 @@ function App() {
   const checkCTX  =tokenCTX.tokenValid;
   console.log(checkCTX)
   
+const localStorageCheck = ()=>{
+    const locData = localStorage.getItem('JWTTOKEN');
+  console.log(locData)
+
+  if(locData.trim().length > 0){
+    tokenCTX.tokenHandler(locData)
+  }
+}
+  useEffect(localStorageCheck,[]);
+
   return (
       <Layout> 
         <Switch>
