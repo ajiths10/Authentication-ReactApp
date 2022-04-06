@@ -19,6 +19,37 @@ const AuthForm = () => {
     const enteredPassword = passwordInputRef.current.value;
 
     if (isLogin) {
+      setLoading(true);
+      fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDYvgMIyWWmOzJ3IXis-uRWEguL3xNOPww",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: enteredEmail,
+            password: enteredPassword,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      ).then((res) => {
+        if (res.ok) {
+          setLoading(false);
+          emailInputRef.current.value = "";
+          passwordInputRef.current.value = "";
+          res.json().then((data) => {
+            console.log(data);
+          });
+        } else {
+          res.json().then((data) => {
+            //show an error model
+            setLoading(false);
+            console.log(data.error.message);
+            alert(data.error.message);
+          });
+        }
+      });
     } else {
       setLoading(true);
       fetch(
@@ -37,15 +68,14 @@ const AuthForm = () => {
       ).then((res) => {
         if (res.ok) {
           setLoading(false);
-          emailInputRef.current.value='';
-          passwordInputRef.current.value='';
+          emailInputRef.current.value = "";
+          passwordInputRef.current.value = "";
         } else {
           res.json().then((data) => {
             //show an error model
             setLoading(false);
             console.log(data.error.message);
             alert(data.error.message);
-            
           });
         }
       });
@@ -70,8 +100,12 @@ const AuthForm = () => {
           />
         </div>
         <div className={classes.actions}>
-          {!isLoading  && <button>{isLogin ? "Login" : "Create Account"}</button>}
-          {isLoading && <label className={classes.labelClass} >Sending request...</label> }
+          {!isLoading && (
+            <button>{isLogin ? "Login" : "Create Account"}</button>
+          )}
+          {isLoading && (
+            <label className={classes.labelClass}>Sending request...</label>
+          )}
           <button
             type="button"
             className={classes.toggle}
