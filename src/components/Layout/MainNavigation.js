@@ -9,7 +9,7 @@ const MainNavigation = () => {
   const tokenCTX = useContext(TokenContext);
   const checkCTX  =tokenCTX.tokenValid;
   const history = useHistory();
-
+  console.log(checkCTX)
   const LogoutBtnHandler = (event) => {
     event.preventDefault();
      tokenCTX.tokenHandler('');

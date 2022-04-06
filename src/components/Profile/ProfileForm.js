@@ -10,7 +10,7 @@ const ProfileForm = () => {
   const resetPassWordRef = useRef();
   const [btnValue, setBtnValue] = useState('Change Password')
   const tokenData = CTX.token;
-
+  
   const changePasswordHandler = async(event)=>{
     event.preventDefault();
     const refPasswordValue = resetPassWordRef.current.value;
