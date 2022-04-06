@@ -1,9 +1,11 @@
 import React, { useState , useContext , useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import TokenContext from '../Context/Context-Token';
 import classes from './ProfileForm.module.css';
 
 const ProfileForm = () => {
+  const history = useHistory();
   const CTX = useContext(TokenContext);
   const resetPassWordRef = useRef();
   const [btnValue, setBtnValue] = useState('Change Password')
@@ -31,6 +33,7 @@ const ProfileForm = () => {
         }
         )
         console.log('Request send sucessfully');
+        history.replace('/');
       }catch(err){ 
         console.log('Something went wrong');
         alert(err.error.message)}

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+ import { Link, useHistory } from 'react-router-dom';
 
 import TokenContext from '../Context/Context-Token';
 import classes from './MainNavigation.module.css';
@@ -12,8 +12,8 @@ const MainNavigation = () => {
 
   const LogoutBtnHandler = (event) => {
     event.preventDefault();
-    tokenCTX.tokenHandler('');
-    history.replace('/auth');
+     tokenCTX.tokenHandler('');
+     history.replace('/auth');
   };
 
   return (
@@ -30,7 +30,7 @@ const MainNavigation = () => {
             { checkCTX && <Link to='/profile'>Profile</Link>}
           </li>
           <li>
-            {checkCTX && <button onClick={LogoutBtnHandler} >Logout</button>}
+            {checkCTX && <button onClick={LogoutBtnHandler}>Logout</button>}
           </li>
         </ul>
       </nav>
