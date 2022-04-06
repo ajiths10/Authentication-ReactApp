@@ -1,10 +1,12 @@
-import { useState, useRef } from "react";
+import { useState, useRef , useContext } from "react";
 
+import TokenContext from "../Context/Context-Token";
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const tokenValue = useContext(TokenContext);
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
@@ -39,7 +41,9 @@ const AuthForm = () => {
           emailInputRef.current.value = "";
           passwordInputRef.current.value = "";
           res.json().then((data) => {
-            console.log(data);
+            console.log(data.idToken);
+            tokenValue.tokenHandler(data.idToken);
+            //
           });
         } else {
           res.json().then((data) => {
