@@ -17,12 +17,8 @@ function App() {
 const localStorageCheck = ()=>{
     const locData = localStorage.getItem('JWTTOKEN');
   console.log(locData)
-
-  if(locData.trim().length > 0){
-    tokenCTX.tokenHandler(locData)
-  }
 }
-  useEffect(localStorageCheck,[]);
+ 
 
   return (
       <Layout> 

@@ -46,6 +46,7 @@ const AuthForm = () => {
             
             tokenValue.tokenHandler(data.idToken);
             localStorage.setItem('JWTTOKEN' , data.idToken);
+            tokenValue.loginHandler();
             history.replace('/'); //redirecting the page when user sucessfully logged in.
             //
           });

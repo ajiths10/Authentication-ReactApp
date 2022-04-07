@@ -6,22 +6,32 @@ const [TokenState , UpdateToken] = useState('');
 const [tokenisValid, setTokenValid] = useState(false);
 
 const setTokenHandler=(data)=>{
-    
-    UpdateToken(data);       
+    UpdateToken(data); 
+    setTokenValid(false);      
 };
 
 const checker = ()=>{
-    if(TokenState.trim() !==''){
-        setTokenValid(true);
-    }else{
+    const localData = localStorage.getItem('JWTTOKEN')
+
+    if(localData==null){
         setTokenValid(false);
+    }else if(localData.trim()==''){
+        setTokenValid(false);
+    }else{
+        setTokenValid(true);
     }
 }
-useEffect(checker,[TokenState])
+useEffect(checker,[])
+
+const loginStateHandle=()=>{
+    setTokenValid(true);
+}
+
 
     const contextHandler= {
         token : TokenState,
         tokenHandler: setTokenHandler,
+        loginHandler:loginStateHandle,
         tokenValid: tokenisValid,
     };
 
